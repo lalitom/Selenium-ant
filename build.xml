@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+   <project name="Hello World Project" default="run">
+   <path id="build.classpath">
+  <fileset dir="lib">
+    <include name="**/*.jar"/>
+    <include name="**/*.zip"/>
+  </fileset>
+</path>
+   <!--<target name="info">
+      <echo>Hello World - Welcome to Apache Ant!</echo>
+   </target> -->
+<!-- for clearing previous complied classes -->
+   <target name="clean">
+      <delete dir = "build" />
+    </target> 
+<!-- for java compile-->
+<target name ="compile" depends ="clean">
+<mkdir dir ="build/classes"/>
+<javac includeantruntime="false" srcdir="src" destdir="build/classes" >
+<classpath refid="build.classpath"/>
+</javac>
+</target>
+ <target name ="run" depends ="compile">   
+<!--<java classname="oata.HelloWorld">
+         <arg value="-h"/>
+         <classpath>
+           <pathelement path="build/classes"/>
+         </classpath>
+       </java> -->
+<java classname="oata.google">
+         <arg value="-h"/>
+         <classpath>
+           <path refid="build.classpath" />
+           <pathelement path="build/classes"/>
+           <!-- <pathelement path="lib/selenium-server-standalone-2.45.0.jar"/> -->
+         </classpath>
+       </java>
+</target>
+</project>
